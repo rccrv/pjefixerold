@@ -25,13 +25,20 @@ namespace pjefixer
             var pjeHKUSR = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("JavaSoft").OpenSubKey("Prefs").OpenSubKey("br").OpenSubKey("jus").OpenSubKey("cnj", true);
             if (pjeHKUSR != null)
             {
-                    if (pjeHKUSR.OpenSubKey("pje") != null)
-                    {
-                        pjeHKUSR.DeleteSubKeyTree("pje");
-                    }
+                if (pjeHKUSR.OpenSubKey("pje") != null)
+                {
+                    pjeHKUSR.DeleteSubKeyTree("pje");
+                    label.Content = "Arrumado";
+                }
+                if (pjeHKUSR.OpenSubKey("pje") == null)
+                {
+                    label.Content = "Arrumado";
+                }
+                else
+                {
+                    label.Content = "Falhou";
+                }
             }
-
-            label.Content = "Arrumado";
         }
     }
 }
